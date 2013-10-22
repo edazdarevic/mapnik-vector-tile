@@ -131,7 +131,7 @@ namespace mapnik { namespace vector {
             for (int j = 0; j < layer.features_size(); j++)
             {
                 mapnik::vector::tile_feature const& feature = layer.features(j);
-                mapnik::eGeomType g_type = static_cast<mapnik::eGeomType>(feature.type());
+                mapnik::geometry_type::types g_type = static_cast<mapnik::geometry_type::types>(feature.type());
                 mapnik::geometry_type geom(g_type);
                 int cmd = -1;
                 const int cmd_bits = 3;
