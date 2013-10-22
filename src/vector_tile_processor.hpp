@@ -249,7 +249,7 @@ namespace mapnik { namespace vector {
             unsigned path_count = 0;
             switch (geom.type())
             {
-            case mapnik::Point:
+            case mapnik::geometry_type::types::Point:
             {
                 if (geom.size() > 0)
                 {
@@ -260,7 +260,7 @@ namespace mapnik { namespace vector {
                 }
                 break;
             }
-            case mapnik::LineString:
+            case mapnik::geometry_type::types::LineString:
             {
                 if (geom.size() > 1)
                 {
@@ -277,7 +277,7 @@ namespace mapnik { namespace vector {
                 }
                 break;
             }
-            case mapnik::Polygon:
+            case mapnik::geometry_type::types::Polygon:
             {
                 if (geom.size() > 2)
                 {
@@ -310,7 +310,7 @@ namespace mapnik { namespace vector {
                 }
                 break;
             }
-            case mapnik::Unknown:
+            case mapnik::geometry_type::types::Unknown:
             default:
             {
                 throw std::runtime_error("unhandled geometry type");

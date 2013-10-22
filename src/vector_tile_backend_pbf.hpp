@@ -99,8 +99,8 @@ namespace mapnik { namespace vector {
             feature_kv_iterator end = feature.end();
             for ( ;itr!=end; ++itr)
             {
-                std::string const& name = boost::get<0>(*itr);
-                mapnik::value const& val = boost::get<1>(*itr);
+                std::string const& name = std::get<0>(*itr);
+                mapnik::value const& val = std::get<1>(*itr);
                 if (!val.is_null())
                 {
                     // Insert the key index
@@ -164,7 +164,7 @@ namespace mapnik { namespace vector {
         }
 
         template <typename T>
-        unsigned add_path(T & path, unsigned tolerance, mapnik::eGeomType type)
+        unsigned add_path(T & path, unsigned tolerance, mapnik::geometry_type::types type)
         {
             unsigned count = 0;
 

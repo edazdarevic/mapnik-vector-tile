@@ -27,8 +27,6 @@
 
 #include <boost/optional.hpp>
 #include <boost/ptr_container/ptr_vector.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
 #include <unicode/unistr.h>
 #include <boost/algorithm/string.hpp>
 
@@ -52,7 +50,7 @@ namespace mapnik { namespace vector {
               itr_(0),
               end_(layer_.features_size()),
               tr_("utf-8"),
-              ctx_(boost::make_shared<mapnik::context_type>())
+              ctx_(std::make_shared<mapnik::context_type>())
         {
             std::set<std::string>::const_iterator pos = attribute_names.begin();
             std::set<std::string>::const_iterator end = attribute_names.end();
@@ -79,7 +77,7 @@ namespace mapnik { namespace vector {
                 mapnik::value_integer feature_id = itr_++;
                 std::auto_ptr<mapnik::geometry_type> geom(
                     new mapnik::geometry_type(
-                        mapnik::eGeomType(f.type())));
+                        mapnik::geometry_type::types(f.type())));
                 int cmd = -1;
                 const int cmd_bits = 3;
                 unsigned length = 0;
@@ -275,7 +273,7 @@ namespace mapnik { namespace vector {
     inline featureset_ptr tile_datasource::features(query const& q) const
     {
         mapnik::filter_in_box filter(q.get_bbox());
-        return boost::make_shared<tile_featureset<mapnik::filter_in_box> >
+        return std::make_shared<tile_featureset<mapnik::filter_in_box> >
             (filter, q.property_names(), layer_, tile_x_, tile_y_, scale_);
     }
 
@@ -287,7 +285,7 @@ namespace mapnik { namespace vector {
         {
             names.insert(layer_.keys(i));
         }
-        return boost::make_shared<tile_featureset<filter_at_point> >
+        return std::make_shared<tile_featureset<filter_at_point> >
             (filter, names, layer_, tile_x_, tile_y_, scale_);
     }
 

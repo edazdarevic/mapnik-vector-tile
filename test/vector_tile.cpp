@@ -106,7 +106,7 @@ TEST_CASE( "vector tile input", "should be able to parse message and render poin
     mapnik::vector::tile_layer const& layer2 = tile2.layers(0);
     CHECK(std::string("layer") == layer2.name());
     mapnik::layer lyr2("layer");
-    boost::shared_ptr<mapnik::vector::tile_datasource> ds = boost::make_shared<
+    std::shared_ptr<mapnik::vector::tile_datasource> ds = std::make_shared<
                                     mapnik::vector::tile_datasource>(
                                         layer2,x,y,z,map2.width());
     ds->set_envelope(bbox);
